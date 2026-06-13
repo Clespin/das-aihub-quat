@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Quantitativo | Execução Algorítmica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .bg-panel { background-color: #1e293b; border: 1px solid #334155; }
+        .text-accent { color: #38bdf8; }
+        .btn-primary { background-color: #0284c7; transition: background 0.2s; }
+        .btn-primary:hover { background-color: #0369a1; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="max-w-5xl mx-auto px-6 py-20 text-center">
+        <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-sky-400 uppercase bg-sky-900/30 rounded-full border border-sky-800">
+            Arquitetura de Decisão Orientada a Dados
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">A Evolução Algorítmica do <span class="text-accent">Capital</span></h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10">
+            Substitua a intuição humana por modelos matemáticos e execução estatisticamente comprovada. Elimine vieses emocionais através de operações puramente determinísticas.
+        </p>
+        <a href="#simulador" class="btn-primary text-white font-bold py-4 px-8 rounded-lg text-lg uppercase tracking-wide">
+            Testar Validação Histórica
+        </a>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-2xl font-bold mb-10 text-center border-b border-slate-700 pb-4">A Tríade Analítica Quantitativa</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-panel p-8 rounded-xl">
+                <h3 class="text-xl font-bold text-sky-400 mb-4">01. Matemática Teórica</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">Modelagem de dinâmica de preços e arquitetura de risco. Aplicação de matrizes de covariância para otimização de portfólios e estabelecimento de limites operacionais absolutos.</p>
+            </div>
+            <div class="bg-panel p-8 rounded-xl">
+                <h3 class="text-xl font-bold text-sky-400 mb-4">02. Estatística Aplicada</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">Filtro metodológico contra o caos do mercado. Testes de hipótese, análise de cointegração e cálculo de Value at Risk (VaR) para rejeição de falsos positivos.</p>
+            </div>
+            <div class="bg-panel p-8 rounded-xl">
+                <h3 class="text-xl font-bold text-sky-400 mb-4">03. Infraestrutura em Python</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">Pipelines de dados via APIs de baixa latência e execução End-to-End. Transformação de teorias em algoritmos determinísticos operando sem intervenção humana.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulador" class="max-w-6xl mx-auto px-6 py-16 mb-20">
+        <h2 class="text-2xl font-bold mb-6 border-b border-slate-700 pb-4">Simulador de Monte Carlo: Variância vs Expectativa</h2>
+        <p class="text-slate-400 mb-10 max-w-4xl text-sm">
+            Modele parâmetros de performance reais. O algoritmo abaixo projeta 15 linhas do tempo (cenários) baseadas em Random Walk, demonstrando a lei dos grandes números e expondo a necessidade técnica da remoção emocional nos drawdowns.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-panel p-6 rounded-xl">
+            <div class="col-span-1 space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Taxa de Acerto (%)</label>
+                    <input type="number" id="winRate" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="45" min="1" max="99">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Ganho Médio (%)</label>
+                    <input type="number" id="avgWin" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="4.5" step="0.1">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Perda Média (%)</label>
+                    <input type="number" id="avgLoss" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="-2.0" step="0.1">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Capital Inicial ($)</label>
+                    <input type="number" id="initCap" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="10000">
+                </div>
+                <button onclick="runMonteCarlo()" class="btn-primary w-full text-white font-bold py-3 rounded uppercase text-sm mt-4">
+                    Executar Simulação
+                </button>
+                
+                <div class="pt-6 border-t border-slate-700 space-y-3 text-sm">
+                    <div class="flex justify-between"><span class="text-slate-400">Capital Médio Final:</span> <span id="statAvg" class="font-bold text-sky-400">$0.00</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Máximo (Melhor Cenário):</span> <span id="statMax" class="font-bold text-emerald-400">$0.00</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Mínimo (Pior Cenário):</span> <span id="statMin" class="font-bold text-rose-400">$0.00</span></div>
+                </div>
+            </div>
+            
+            <div class="col-span-1 md:col-span-2 flex flex-col justify-center min-h-[400px]">
+                <canvas id="monteCarloChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 DAS AIhub. Infraestrutura de Engenharia e Análise de Dados.</p>
+    </footer>
+
+    <script>
+        let chartInstance = null;
+        function runMonteCarlo() {
+            const wr = parseFloat(document.getElementById('winRate').value) / 100;
+            const win = parseFloat(document.getElementById('avgWin').value) / 100;
+            const loss = parseFloat(document.getElementById('avgLoss').value) / 100;
+            const initCap = parseFloat(document.getElementById('initCap').value);
+            
+            const trades = 100; 
+            const paths = 15; 
+            const datasets = []; 
+            let finalCapitals = [];
+            
+            for (let p = 0; p < paths; p++) {
+                let currentCap = initCap; 
+                let dataPoints = [initCap];
+                
+                for (let t = 0; t < trades; t++) {
+                    const isWin = Math.random() < wr;
+                    currentCap = currentCap * (1 + (isWin ? win : loss));
+                    dataPoints.push(Math.round(currentCap));
+                }
+                
+                finalCapitals.push(currentCap);
+                datasets.push({
+                    label: `Cenário ${p+1}`,
+                    data: dataPoints,
+                    borderColor: `rgba(56, 189, 248, ${0.15 + (p/paths)*0.7})`,
+                    borderWidth: 1.5,
+                    pointRadius: 0,
+                    fill: false,
+                    tension: 0.1
+                });
+            }
+            
+            const avgFinal = finalCapitals.reduce((a,b)=>a+b, 0) / paths;
+            const maxFinal = Math.max(...finalCapitals);
+            const minFinal = Math.min(...finalCapitals);
+            
+            document.getElementById('statAvg').innerText = '$' + Math.round(avgFinal).toLocaleString();
+            document.getElementById('statMax').innerText = '$' + Math.round(maxFinal).toLocaleString();
+            document.getElementById('statMin').innerText = '$' + Math.round(minFinal).toLocaleString();
+            
+            const ctx = document.getElementById('monteCarloChart').getContext('2d');
+            if (chartInstance) { chartInstance.destroy(); }
+            
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { 
+                    labels: Array.from({length: trades + 1}, (_, i) => i), 
+                    datasets: datasets 
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b', maxTicksLimit: 10 } },
+                        y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
+                    },
+                    animation: { duration: 800 }
+                }
+            });
+        }
+        window.onload = runMonteCarlo;
+    </script>
+</body>
+</html>
+# DAS AIhub - Landing Page Quantitativa
+
+Página de alta conversão e simulador estatístico focado em Trading Quantitativo e arquitetura de decisão baseada em dados. 
+
+## Tecnologias Empregadas
+- **HTML5** estrutural
+- **Tailwind CSS** (via CDN para compilação client-side)
+- **Vanilla JavaScript** (Motor matemático estocástico)
+- **Chart.js** (Renderização visual multilinhas)
+
+## Deploy Automático (GitHub Pages)
+Este repositório foi arquitetado para ser servido estaticamente.
+
+1. Faça o push dos arquivos para a `main`.
+2. Vá em **Settings > Pages** no seu repositório GitHub.
+3. Em **Source**, selecione "Deploy from a branch".
+4. Escolha a branch `main` e a pasta `/ (root)`.
+5. Salve. Em poucos minutos, a infraestrutura fará o build e fornecerá o link público.
