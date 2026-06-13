@@ -87,7 +87,6 @@
     <script>
         let chartInstance = null;
         function runMonteCarlo() {
-            // Garantindo compatibilidade de parsing de float
             const rawWr = document.getElementById('winRate').value;
             const rawWin = document.getElementById('avgWin').value;
             const rawLoss = document.getElementById('avgLoss').value;
@@ -103,6 +102,25 @@
             const datasets = []; 
             let finalCapitals = [];
             
+            // Matriz de cores de alto contraste para o tema escuro
+            const colorPalette = [
+                '#38bdf8', // Sky Blue
+                '#34d399', // Emerald
+                '#fbbf24', // Amber
+                '#f472b6', // Pink
+                '#a78bfa', // Purple
+                '#fb923c', // Orange
+                '#2dd4bf', // Teal
+                '#818cf8', // Indigo
+                '#f87171', // Red
+                '#a3e635', // Lime
+                '#60a5fa', // Blue
+                '#e879f9', // Fuchsia
+                '#facc15', // Yellow
+                '#4ade80', // Green
+                '#cbd5e1'  // Slate
+            ];
+            
             for (let p = 0; p < paths; p++) {
                 let currentCap = initCap; 
                 let dataPoints = [initCap];
@@ -117,7 +135,7 @@
                 datasets.push({
                     label: `Cenário ${p+1}`,
                     data: dataPoints,
-                    borderColor: `rgba(56, 189, 248, ${0.15 + (p/paths)*0.7})`,
+                    borderColor: colorPalette[p % colorPalette.length],
                     borderWidth: 1.5,
                     pointRadius: 0,
                     fill: false,
@@ -157,10 +175,11 @@
             });
         }
         
-        // Dispara uma simulação inicial ao carregar a página
         window.addEventListener('DOMContentLoaded', (event) => {
             runMonteCarlo();
         });
     </script>
+
+  
 </body>
 </html>
