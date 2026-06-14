@@ -175,8 +175,30 @@
             });
         }
         
-        window.addEventListener('DOMContentLoaded', (event) => {
+   async function injetarDadosDeMercado() {
+            try {
+                // Busca o arquivo gerado pelo robô no GitHub Actions
+                const resposta = await fetch('dados_mercado.json?v=' + new Date().getTime());
+                if (resposta.ok) {
+                    const dados = await resposta.json();
+                    
+                    // Injeta os dados matemáticos reais nos campos da tela
+                    document.getElementById('winRate').value = dados.taxa_acerto_real;
+                    document.getElementById('avgWin').value = dados.ganho_medio_real;
+                    document.getElementById('avgLoss').value = dados.perda_media_real;
+                    
+                    console.log("Sincronização com o mercado (Ibovespa) estabelecida com sucesso.");
+                }
+            } catch (erro) {
+                console.log("Carregando parâmetros teóricos de base isolada.");
+            }
+            
+            // Dispara o simulador com os números atualizados
             runMonteCarlo();
+        }
+        
+        window.addEventListener('DOMContentLoaded', (event) => {
+            injetarDadosDeMercado();
         });
     </script>
 
