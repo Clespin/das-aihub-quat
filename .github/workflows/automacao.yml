@@ -1,0 +1,34 @@
+name: Pipeline Quantitativo Diário
+
+on:
+  schedule:
+    # Roda de segunda a sexta às 22:00 UTC (19:00 no Brasil)
+    - cron: '0 22 * * 1-5'
+  workflow_dispatch: # Cria um botão para você rodar manualmente quando quiser
+
+jobs:
+  motor_dados:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 1. Baixar o Repositório
+        uses: actions/checkout@v3
+
+      - name: 2. Configurar Servidor Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 3. Instalar Bibliotecas
+        run: pip install -r requirements.txt
+
+      - name: 4. Executar Análise Quantitativa
+        run: python engine.py
+
+      - name: 5. Registrar Novos Dados (Commit)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Motor Quantitativo DAS"
+          git add dados_mercado.json
+          git commit -m "Auto: Atualização diária dos dados de mercado" || echo "Sem mudanças."
+          git push
