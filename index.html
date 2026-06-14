@@ -12,80 +12,91 @@
         .text-accent { color: #38bdf8; }
         .btn-primary { background-color: #0284c7; transition: background 0.2s; cursor: pointer; }
         .btn-primary:hover { background-color: #0369a1; }
+        /* Garante espaço para a fita flutuante no rodapé */
+        .pb-ticker { padding-bottom: 50px; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased pb-ticker">
 
-    <header class="max-w-5xl mx-auto px-6 py-20 text-center">
+    <header class="max-w-5xl mx-auto px-6 py-16 text-center">
         <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-sky-400 uppercase bg-sky-900/30 rounded-full border border-sky-800">
             Arquitetura de Decisão Orientada a Dados
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">A Evolução Algorítmica do <span class="text-accent">Capital</span></h1>
-        <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10">
-            Substitua a intuição humana por modelos matemáticos e execução estatisticamente comprovada. Elimine vieses emocionais através de operações puramente determinísticas.
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">A Evolução Algorítmica do <span class="text-accent">Capital</span></h1>
+        <p class="text-slate-400 max-w-2xl mx-auto text-sm">
+            Substitua a intuição humana por modelos matemáticos e execução estatisticamente comprovada através de operações puramente determinísticas.
         </p>
     </header>
 
-    <section class="max-w-6xl mx-auto px-6 py-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-panel p-8 rounded-xl">
-                <h3 class="text-xl font-bold text-sky-400 mb-4">01. Matemática Teórica</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">Modelagem de dinâmica de preços e arquitetura de risco. Aplicação de matrizes de covariância para otimização de portfólios.</p>
-            </div>
-            <div class="bg-panel p-8 rounded-xl">
-                <h3 class="text-xl font-bold text-sky-400 mb-4">02. Estatística Aplicada</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">Filtro metodológico contra o caos do mercado. Testes de hipótese e cálculo de Value at Risk (VaR) para rejeição de falsos positivos.</p>
-            </div>
-            <div class="bg-panel p-8 rounded-xl">
-                <h3 class="text-xl font-bold text-sky-400 mb-4">03. Infraestrutura Python</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">Pipelines de dados via APIs de baixa latência e execução End-to-End operando sem intervenção humana.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-6xl mx-auto px-6 py-16 mb-20">
-        <h2 class="text-2xl font-bold mb-6 border-b border-slate-700 pb-4">Simulador de Monte Carlo: Variância vs Expectativa</h2>
-        <p class="text-slate-400 mb-10 max-w-4xl text-sm">
-            Modele parâmetros reais. O algoritmo projeta 15 linhas do tempo (cenários) baseadas em Random Walk.
-        </p>
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <h2 class="text-xl font-bold mb-6 border-b border-slate-700 pb-3">Ambiente Analítico Integrado: Variância vs Expectativa</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-panel p-6 rounded-xl">
-            <div class="col-span-1 space-y-5">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 bg-panel p-6 rounded-xl">
+            <div class="col-span-1 space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Taxa de Acerto (%)</label>
-                    <input type="number" id="winRate" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="40" min="1" max="99">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Taxa de Acerto (%)</label>
+                    <input type="number" id="winRate" class="w-full bg-slate-900 border border-slate-600 text-white p-2.5 rounded text-sm" value="40" min="1" max="99">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Ganho Médio (%)</label>
-                    <input type="number" id="avgWin" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="5.0" step="0.1">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Ganho Médio (%)</label>
+                    <input type="number" id="avgWin" class="w-full bg-slate-900 border border-slate-600 text-white p-2.5 rounded text-sm" value="5.0" step="0.01">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Perda Média (%)</label>
-                    <input type="number" id="avgLoss" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="-2.0" step="0.1">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Perda Média (%)</label>
+                    <input type="number" id="avgLoss" class="w-full bg-slate-900 border border-slate-600 text-white p-2.5 rounded text-sm" value="-2.0" step="0.01">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Capital Inicial ($)</label>
-                    <input type="number" id="initCap" class="w-full bg-slate-900 border border-slate-600 text-white p-3 rounded" value="1000">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Capital Inicial ($)</label>
+                    <input type="number" id="initCap" class="w-full bg-slate-900 border border-slate-600 text-white p-2.5 rounded text-sm" value="1000">
                 </div>
-                <button onclick="runMonteCarlo()" class="btn-primary w-full text-white font-bold py-3 rounded uppercase text-sm mt-4">
+                <button onclick="runMonteCarlo()" class="btn-primary w-full text-white font-bold py-2.5 rounded uppercase text-xs tracking-wider mt-2">
                     Executar Simulação
                 </button>
                 
-                <div class="pt-6 border-t border-slate-700 space-y-3 text-sm">
+                <div class="pt-4 border-t border-slate-700 space-y-2 text-xs">
                     <div class="flex justify-between"><span class="text-slate-400">Capital Médio Final:</span> <span id="statAvg" class="font-bold text-sky-400">$0.00</span></div>
                     <div class="flex justify-between"><span class="text-slate-400">Máximo (Melhor Cenário):</span> <span id="statMax" class="font-bold text-emerald-400">$0.00</span></div>
                     <div class="flex justify-between"><span class="text-slate-400">Mínimo (Pior Cenário):</span> <span id="statMin" class="font-bold text-rose-400">$0.00</span></div>
                 </div>
             </div>
             
-            <div class="col-span-1 md:col-span-2 flex flex-col justify-center min-h-[400px]">
-                <canvas id="monteCarloChart"></canvas>
+            <div class="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4 min-h-[380px]">
+                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                    <div class="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider text-center">Caminhos Aleatórios (Random Walk)</div>
+                    <div class="h-[320px]"><canvas id="monteCarloChart"></canvas></div>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                    <div class="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider text-center">Distribuição de Frequência (Destino Final)</div>
+                    <div class="h-[320px]"><canvas id="histogramChart"></canvas></div>
+                </div>
             </div>
         </div>
     </section>
 
+    <div class="tradingview-widget-container fixed bottom-0 left-0 w-full z-50 bg-[#131722] border-t border-slate-700 shadow-2xl">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+            "symbols": [
+                { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500 Index" },
+                { "proName": "FX_IDC:USDBRL", "title": "USD/BRL" },
+                { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+                { "proName": "BMFBOVESPA:IBOV", "title": "Ibovespa BR" },
+                { "proName": "FX:EURUSD", "title": "EUR/USD" }
+            ],
+            "showSymbolLogo": true,
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "displayMode": "adaptive",
+            "locale": "br"
+        }
+        </script>
+    </div>
+
     <script>
-        let chartInstance = null;
+        let lineChartInstance = null;
+        let barChartInstance = null;
+
         function runMonteCarlo() {
             const rawWr = document.getElementById('winRate').value;
             const rawWin = document.getElementById('avgWin').value;
@@ -102,25 +113,9 @@
             const datasets = []; 
             let finalCapitals = [];
             
-            // Matriz de cores de alto contraste para o tema escuro
-            const colorPalette = [
-                '#38bdf8', // Sky Blue
-                '#34d399', // Emerald
-                '#fbbf24', // Amber
-                '#f472b6', // Pink
-                '#a78bfa', // Purple
-                '#fb923c', // Orange
-                '#2dd4bf', // Teal
-                '#818cf8', // Indigo
-                '#f87171', // Red
-                '#a3e635', // Lime
-                '#60a5fa', // Blue
-                '#e879f9', // Fuchsia
-                '#facc15', // Yellow
-                '#4ade80', // Green
-                '#cbd5e1'  // Slate
-            ];
+            const colorPalette = ['#38bdf8', '#34d399', '#fbbf24', '#f472b6', '#a78bfa', '#fb923c', '#2dd4bf', '#818cf8', '#f87171', '#a3e635', '#60a5fa', '#e879f9', '#facc15', '#4ade80', '#cbd5e1'];
             
+            // Loop de Processamento Estocástico
             for (let p = 0; p < paths; p++) {
                 let currentCap = initCap; 
                 let dataPoints = [initCap];
@@ -143,6 +138,7 @@
                 });
             }
             
+            // Atualização de Métricas Estáticas
             const avgFinal = finalCapitals.reduce((a,b)=>a+b, 0) / paths;
             const maxFinal = Math.max(...finalCapitals);
             const minFinal = Math.min(...finalCapitals);
@@ -151,49 +147,82 @@
             document.getElementById('statMax').innerText = '$' + Math.round(maxFinal).toLocaleString('pt-BR');
             document.getElementById('statMin').innerText = '$' + Math.round(minFinal).toLocaleString('pt-BR');
             
-            const ctx = document.getElementById('monteCarloChart');
-            if (!ctx) return;
-            
-            if (chartInstance) { chartInstance.destroy(); }
-            
-            chartInstance = new Chart(ctx.getContext('2d'), {
+            // Renderização do Gráfico 1: Linhas (Caminhos)
+            const ctxLine = document.getElementById('monteCarloChart').getContext('2d');
+            if (lineChartInstance) { lineChartInstance.destroy(); }
+            lineChartInstance = new Chart(ctxLine, {
                 type: 'line',
-                data: { 
-                    labels: Array.from({length: trades + 1}, (_, i) => i), 
-                    datasets: datasets 
+                data: { labels: Array.from({length: trades + 1}, (_, i) => i), datasets: datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b', maxTicksLimit: 8 } },
+                        y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
+                    }
+                }
+            });
+
+            // Construção dos Bins (Histograma) para o Gráfico 2
+            finalCapitals.sort((a, b) => a - b);
+            const binCount = 5;
+            const binSize = (maxFinal - minFinal) / binCount;
+            let binCounts = Array(binCount).fill(0);
+            let binLabels = [];
+
+            for (let b = 0; b < binCount; b++) {
+                const start = minFinal + (b * binSize);
+                const end = start + binSize;
+                binLabels.push(`$${Math.round(start)}-${Math.round(end)}`);
+            }
+
+            finalCapitals.forEach(val => {
+                let index = Math.floor((val - minFinal) / binSize);
+                if (index >= binCount) index = binCount - 1; 
+                binCounts[index]++;
+            });
+
+            // Renderização do Gráfico 2: Histograma (Distribuição)
+            const ctxBar = document.getElementById('histogramChart').getContext('2d');
+            if (barChartInstance) { barChartInstance.destroy(); }
+            barChartInstance = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: binLabels,
+                    datasets: [{
+                        data: binCounts,
+                        backgroundColor: 'rgba(56, 189, 248, 0.4)',
+                        borderColor: '#38bdf8',
+                        borderWidth: 1.5,
+                        borderRadius: 4
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b', maxTicksLimit: 10 } },
-                        y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
-                    },
-                    animation: { duration: 800 }
+                        x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 9 } } },
+                        y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b', stepSize: 1, precision: 0 } }
+                    }
                 }
             });
         }
-        
-   async function injetarDadosDeMercado() {
+
+        // Ponte de Sincronização Dinâmica com o pipeline Python
+        async function injetarDadosDeMercado() {
             try {
-                // Busca o arquivo gerado pelo robô no GitHub Actions
                 const resposta = await fetch('dados_mercado.json?v=' + new Date().getTime());
                 if (resposta.ok) {
                     const dados = await resposta.json();
-                    
-                    // Injeta os dados matemáticos reais nos campos da tela
                     document.getElementById('winRate').value = dados.taxa_acerto_real;
                     document.getElementById('avgWin').value = dados.ganho_medio_real;
                     document.getElementById('avgLoss').value = dados.perda_media_real;
-                    
-                    console.log("Sincronização com o mercado (Ibovespa) estabelecida com sucesso.");
                 }
             } catch (erro) {
-                console.log("Carregando parâmetros teóricos de base isolada.");
+                console.log("Utilizando parâmetros padrão do sistema.");
             }
-            
-            // Dispara o simulador com os números atualizados
             runMonteCarlo();
         }
         
@@ -201,7 +230,5 @@
             injetarDadosDeMercado();
         });
     </script>
-
-  
 </body>
 </html>
